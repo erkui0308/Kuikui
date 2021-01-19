@@ -1,16 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>解忧杂货铺</title>
-</head>
-<body>
     <script src="assets/jquery.min.js?v=3.3.1"></script>
     <script src="assets/jquery-ui.min.js?v=1.12.1"></script>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <style>
+        header {
+            background-color: #dd001b;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <canvas id="myCanvas" width="300" height="53" style="border: 6px solid #dd001b;">
+        </canvas>
+    </header>
+
+    <script src="./js/watch.js"></script>
     <script>
+        // watch
+        quanju()
+        setInterval(function () {
+            quanju()
+        }, 10);
+        // --
         try {
-            $("<link>").attr({ href: "assets/waifu.min.css?v=1.4.2", rel: "stylesheet", type: "text/css" }).appendTo('head');
+            $("<link>").attr({
+                href: "assets/waifu.min.css?v=1.4.2",
+                rel: "stylesheet",
+                type: "text/css"
+            }).appendTo('head');
             $('body').append(
                 `<div class="waifu"><div class="waifu-tips"></div>
                     <canvas id="live2d" class="live2d"></canvas>
@@ -19,18 +45,30 @@
                         <span class="fui-cross"></span>
                     </div>
                 </div>`);
-            $.ajax({ url: 'assets/waifu-tips.min.js?v=1.4.2', dataType: "script", cache: true, async: false });
-            $.ajax({ url: 'assets/live2d.min.js?v=1.0.5', dataType: "script", cache: true, async: false });
+            $.ajax({
+                url: 'assets/waifu-tips.min.js?v=1.4.2',
+                dataType: "script",
+                cache: true,
+                async: false
+            });
+            $.ajax({
+                url: 'assets/live2d.min.js?v=1.0.5',
+                dataType: "script",
+                cache: true,
+                async: false
+            });
             /* 可直接修改部分参数 */
-            live2d_settings['hitokotoAPI'] = 'hitokoto.cn';  // 一言 API
-            live2d_settings['modelId'] = 6;                  // 默认模型 ID
-            live2d_settings['modelTexturesId'] = 15;          // 默认材质 ID
-            live2d_settings['modelStorage'] = false;         // 不储存模型 ID
-            live2d_settings['waifuDraggableRevert'] = false;   // 松开鼠标还原拖拽位置，可选 true(真), false(假)
+            live2d_settings['hitokotoAPI'] = 'hitokoto.cn'; // 一言 API
+            live2d_settings['modelId'] = 6; // 默认模型 ID
+            live2d_settings['modelTexturesId'] = 15; // 默认材质 ID
+            live2d_settings['modelStorage'] = false; // 不储存模型 ID
+            live2d_settings['waifuDraggableRevert'] = false; // 松开鼠标还原拖拽位置，可选 true(真), false(假)
             /* 在 initModel 前添加 */
             initModel('assets/waifu-tips.json');
-        } catch (err) { console.log('[Error] JQuery is not defined.') }
-
+        } catch (err) {
+            console.log('[Error] JQuery is not defined.')
+        }
     </script>
 </body>
+
 </html>
