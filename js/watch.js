@@ -16,25 +16,26 @@ function quanju() {
     var s = now.getSeconds();
     var ms = now.getMilliseconds();
     // 表盘数字
-    for (var i = 0; i < 12; i++) {
-        var txts = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-        ctx.beginPath();
+    // for (var i = 0; i < 12; i++) {
+        // var txts = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+        var txts = ['.'];
+        ctx.beginPath();s
         ctx.font = '12px black'
         ctx.fillStyle = 'white'
-        ctx.fillText(txts[i], 25 + (Math.sin(i * 30 * deg) * 25), 35 - (Math.cos(i * 30 * deg) * 25))
-    }
+        ctx.fillText(txts, 25 + (Math.sin(s * 6 * deg) * 25), 35 - (Math.cos(s * 6 * deg) * 25))
+    // }
     // 阴影~
-    ctx.shadowBlur = 15;
+    ctx.shadowBlur = 30;
     ctx.shadowColor = 'pink'
-    ctx.shadowOffsetX = 1;
-    ctx.shadowOffsetY = 1;
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 2;
     // 时针
     var hx = 30 + 14 * (Math.sin(h * 30 * deg + m * 0.5 * deg));
     var hy = 30 - 14 * (Math.cos(h * 30 * deg + m * 0.5 * deg));
     ctx.beginPath();
     ctx.moveTo(30, 30);
     ctx.lineTo(hx, hy);
-    ctx.strokeStyle = 'black';
+    ctx.strokeStyle = 'red';
     ctx.lineCap = 'round';
     ctx.lineWidth = 1.5;
     ctx.stroke();
@@ -46,7 +47,7 @@ function quanju() {
     ctx.beginPath();
     ctx.moveTo(30, 30);
     ctx.lineTo(mx, my);
-    ctx.strokeStyle = 'orange';
+    ctx.strokeStyle = 'cornflowerblue';
     ctx.lineWidth =1;
     ctx.stroke();
     // 秒针同理
@@ -55,7 +56,7 @@ function quanju() {
     ctx.beginPath();
     ctx.moveTo(30, 30);
     ctx.lineTo(sx, sy);
-    ctx.strokeStyle = '';
+    ctx.strokeStyle = 'ghostwhite';
     ctx.lineWidth = 0.5;
     ctx.stroke();
     // 随便加上一行文字~哈哈
