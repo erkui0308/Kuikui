@@ -18,8 +18,17 @@
             width: 100%;
             z-index: 999;
         }
-        .box{
+        /* .box{
             padding-top: 113px;
+        } */
+        .m-tabct {
+            display: none;
+            position: absolute;
+            top: 113px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            overflow-y: auto;
         }
     </style>
 </head>
@@ -63,7 +72,7 @@
                                     </div>
                                     <h2 class="remd_tl">最新音乐</h2>
                                     <div class="remd_newsg">
-                                        <div class="m-sglst">
+                                        <div class="m-sglst" style="padding-bottom: 127px;">
 
                                         </div>
                                     </div>
@@ -73,12 +82,7 @@
                         <div class="m-tabct">
                             <div class="tabctitem">
                                 <div class="m-hmhot">
-                                    <div class="hotop">
-                                        <div class="hotopct">
-                                            <div class="u-hmsprt hoticon"></div>
-                                            <div class="hottime">更新日期：01月21日</div>
-                                        </div>
-                                    </div>
+                                    <div class="hottime">更新日期：01月21日</div>
                                     <div class="hotcont">
                                         <div class="m-sglst">
                                             <a class="m-sgitem" href="">
@@ -92,16 +96,14 @@
                                                         </div>
                                                     </div>
                                                     <div class="sgchfr">
-                                                        <span class="u-hmsprt sgchply"></span>
+                                                        <span class="u-hmsprt sgchply">
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="hotdn"><span class="hotview">查看完整榜单</span></div>
-                                    <div style="height: 1200px;">
-
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -229,12 +231,12 @@
             }
         });
 
-        var api = 'https://musicapi.leanapp.cn/personalized'
+        var api = 'https://musicapi.leanapp.cn'
 
         // ---推荐
         $.ajax({
             type: "GET",
-            url: api + "?limit=6",
+            url: api + "/personalized?limit=6",
             dataType: "json",
             success: function (data) {
                 let str = ''
@@ -260,16 +262,16 @@
         // ---最新
         $.ajax({
             type: "GET",
-            url: api + "/newsong",
+            url: api + "/personalized/newsong",
             dataType: "json",
             success: function (data) {
                 let Zxstr = ''
                 var Zxdata = data.result
                 console.log(Zxdata)
                 if (data.code == 200) {
-                    for (var i = 0; i <= 3; i++) {
+                    for (var i = 0; i <= 5; i++) {
                         console.log(Zxdata[i])
-                        Zxstr += '<a class="m-sgitem" href="#" style="color: black;">'
+                        Zxstr += '<a class="m-sgitem" href="player.html?id='+ Zxdata[i].id +'"style="color: black;">'
                         Zxstr += '<div class="sgfr f-bd f-bd-btm">'
                         Zxstr += '<div class="sgchfl">'
                         Zxstr += '<div class="f-thide sgtl">' + Zxdata[i].name + '</div>'

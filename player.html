@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title></title>
+</head>
+<body>
+    <div class="player">
+
+    </div>
+    <script src="./js/url.js"></script>
+    <script>
+        var str = ""
+        str += "<audio controls autoplay  style='margin-top: 50px;' id='my-audio'>";
+        str += "<source src= https://music.163.com/song/media/outer/url?id=" + getQueryVariable('id') + " type='audio/mpeg'>";
+        str += "</audio>";
+        var content = document.querySelector('.player');
+        content.innerHTML = str;
+    </script>
+</body>
+</html>
