@@ -35,22 +35,14 @@
 
 <body>
     <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide menu">
-                <!-- content-c -->
-            </div>
-            <div class="swiper-slide content">
-                <div class="menu-button">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
+        <div class="swiper-wrapper" >
+            <div class="swiper-slide content" >
                 <!-- content -->
-                <header>
-                    <canvas id="myCanvas" width="300" height="60" style="border: 6px solid black;">
-                    </canvas>
-                </header>
                 <div class="m-tabarea m-tabarea-index">
+                    <header>
+                        <canvas id="myCanvas" width="300" height="60" style="border: 6px solid black;">
+                        </canvas>
+                    </header>
                     <div class="utab-header">
                         <nav class="u-tab mrc-tab f-bd f-bd-btm f-bd f-bd-btm"><a class="tabtitle z-selected">
                                 <div class="tabtxt"><span class="tt"><em class="tt_word">推荐音乐</em></span></div>
@@ -149,6 +141,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="menu-button">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+            <div class="swiper-slide menu" >
+                <!-- content-c -->
             </div>
         </div>
     </div>
@@ -204,27 +204,27 @@
         // --
         var menuButton = document.querySelector('.menu-button');
         var openMenu = function () {
-            swiper.slidePrev();
+            swiper.slideNext();
         };
         var swiper = new Swiper('.swiper-container', {
+            initialSlide: 0,
+            effect: 'fade',
             slidesPerView: 'auto',
-            initialSlide: 1,
             resistanceRatio: 0,
             slideToClickedSlide: true,
             on: {
                 slideChangeTransitionStart: function () {
-                    var slider = this;
-                    if (slider.activeIndex === 0) {
+                    if (this.activeIndex === 1) {
+                        alert(this.activeIndex)
                         menuButton.classList.add('cross');
-                        // required because of slideToClickedSlide
                         menuButton.removeEventListener('click', openMenu, true);
                     } else {
+                        alert(this.activeIndex)
                         menuButton.classList.remove('cross');
                     }
                 },
                 slideChangeTransitionEnd: function () {
-                    var slider = this;
-                    if (slider.activeIndex === 1) {
+                    if (this.activeIndex === 0) {
                         menuButton.addEventListener('click', openMenu, true);
                     }
                 },

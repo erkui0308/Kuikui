@@ -41,9 +41,9 @@ body {
 .menu {
     min-width: 100px;
     width: 70%;
-    max-width: 320px;
-
-    background-color: #2C8DFB;
+    width: auto;
+    max-width:150px;
+    background-color: beige;
     color: #fff;
 }
 
@@ -55,6 +55,7 @@ body {
     position: fixed;
     top: 0px;
     /* left: 0px; */
+    right: 0;
     padding: 15px;
     cursor: pointer;
     -webkit-transition: .3s;
@@ -62,7 +63,7 @@ body {
     /* background-color: #2C8DFB; */
     /*margin: 14px;
             border-radius: 5px;*/
-    z-index: 1000;
+    z-index: 999999;
 }
 
 .menu-button .bar:nth-of-type(1) {
