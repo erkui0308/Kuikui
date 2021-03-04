@@ -66,3 +66,5 @@ function quanju() {
     ctx.fillStyle = 'white'
     ctx.fillText(txt, 100, 40)
 }
+
+

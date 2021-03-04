@@ -45,6 +45,7 @@ body {
     max-width:150px;
     background-color: beige;
     color: #fff;
+    /* display: none; */
 }
 
 .content {
@@ -54,8 +55,8 @@ body {
 .menu-button {
     position: fixed;
     top: 0px;
-    /* left: 0px; */
-    right: 0;
+    /* left: -44px; */
+    /* right: 0; */
     padding: 15px;
     cursor: pointer;
     -webkit-transition: .3s;

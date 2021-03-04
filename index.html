@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/swiper.css">
     <style>
-        header {
+        .header {
             background-color: black;
             text-align: center;
             position: fixed;
@@ -35,14 +35,17 @@
 
 <body>
     <div class="swiper-container">
-        <div class="swiper-wrapper" >
-            <div class="swiper-slide content" >
+        <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-150px, 0px, 0px);">
+            <div class="swiper-slide menu" id="show">
+                <!-- content-c -->
+            </div>
+            <div class="swiper-slide content">
                 <!-- content -->
                 <div class="m-tabarea m-tabarea-index">
-                    <header>
+                    <div class="header">
                         <canvas id="myCanvas" width="300" height="60" style="border: 6px solid black;">
                         </canvas>
-                    </header>
+                    </div>
                     <div class="utab-header">
                         <nav class="u-tab mrc-tab f-bd f-bd-btm f-bd f-bd-btm"><a class="tabtitle z-selected">
                                 <div class="tabtxt"><span class="tt"><em class="tt_word">推荐音乐</em></span></div>
@@ -147,15 +150,47 @@
                     <div class="bar"></div>
                 </div>
             </div>
-            <div class="swiper-slide menu" >
-                <!-- content-c -->
-            </div>
         </div>
     </div>
     <script src="./js/watch.js"></script>
     <script src="./js/swiper.js"></script>
     <script src="./js/tab.js"></script>
     <script>
+        // --
+        $(function(){
+            // $('#show').toggle();
+            var menuButton = document.querySelector('.menu-button');
+            var openMenu = function () {
+                swiper.slideNext();
+            };
+            var swiper = new Swiper('.swiper-container', {
+            initialSlide: 1,
+            // effect: 'fade',
+            slidesPerView: 'auto',
+            resistanceRatio: 0,
+            slideToClickedSlide: true,
+            on: {
+                slideChangeTransitionStart: function () {
+                    if (this.activeIndex === 0) {
+                        // $('#show').show()        
+                        menuButton.classList.add('cross');
+                        menuButton.removeEventListener('click', openMenu, true);
+                    } else {
+                        // $('.menu').hide()
+                        // alert(this.activeIndex)
+                        menuButton.classList.remove('cross');
+                    }
+                },
+                slideChangeTransitionEnd: function () {
+                    if (this.activeIndex === 1) {
+                        // $('.menu').show()
+                        menuButton.addEventListener('click', openMenu, true);
+                    }
+                },
+            }
+        });
+        })
+        
         // watch
         quanju()
         setInterval(function () {
@@ -201,35 +236,6 @@
         } catch (err) {
             console.log('[Error] JQuery is not defined.')
         }
-        // --
-        var menuButton = document.querySelector('.menu-button');
-        var openMenu = function () {
-            swiper.slideNext();
-        };
-        var swiper = new Swiper('.swiper-container', {
-            initialSlide: 0,
-            effect: 'fade',
-            slidesPerView: 'auto',
-            resistanceRatio: 0,
-            slideToClickedSlide: true,
-            on: {
-                slideChangeTransitionStart: function () {
-                    if (this.activeIndex === 1) {
-                        alert(this.activeIndex)
-                        menuButton.classList.add('cross');
-                        menuButton.removeEventListener('click', openMenu, true);
-                    } else {
-                        alert(this.activeIndex)
-                        menuButton.classList.remove('cross');
-                    }
-                },
-                slideChangeTransitionEnd: function () {
-                    if (this.activeIndex === 0) {
-                        menuButton.addEventListener('click', openMenu, true);
-                    }
-                },
-            }
-        });
 
         var api = 'https://musicapi.leanapp.cn'
 
@@ -267,10 +273,10 @@
             success: function (data) {
                 let Zxstr = ''
                 var Zxdata = data.result
-                console.log(Zxdata)
+                // console.log(Zxdata)
                 if (data.code == 200) {
                     for (var i = 0; i <= 5; i++) {
-                        console.log(Zxdata[i])
+                        // console.log(Zxdata[i])
                         Zxstr += '<a class="m-sgitem" href="player.html?id='+ Zxdata[i].id +'"style="color: black;">'
                         Zxstr += '<div class="sgfr f-bd f-bd-btm">'
                         Zxstr += '<div class="sgchfl">'
