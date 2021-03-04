@@ -45,15 +45,15 @@
                     <div class="header">
                         <canvas id="myCanvas" width="300" height="60" style="border: 6px solid black;">
                         </canvas>
-                    </div>
-                    <div class="utab-header">
-                        <nav class="u-tab mrc-tab f-bd f-bd-btm f-bd f-bd-btm"><a class="tabtitle z-selected">
-                                <div class="tabtxt"><span class="tt"><em class="tt_word">推荐音乐</em></span></div>
-                            </a><a class="tabtitle">
-                                <div class="tabtxt"><span class="tt"><em class="tt_word">热歌榜</em></span></div>
-                            </a><a class="tabtitle">
-                                <div class="tabtxt"><span class="tt"><em class="tt_word">搜索</em></span></div>
-                            </a></nav>
+                        <div class="utab-header">
+                            <nav class="u-tab mrc-tab f-bd f-bd-btm f-bd f-bd-btm"><a class="tabtitle z-selected">
+                                    <div class="tabtxt"><span class="tt"><em class="tt_word">推荐音乐</em></span></div>
+                                </a><a class="tabtitle">
+                                    <div class="tabtxt"><span class="tt"><em class="tt_word">热歌榜</em></span></div>
+                                </a><a class="tabtitle">
+                                    <div class="tabtxt"><span class="tt"><em class="tt_word">搜索</em></span></div>
+                                </a></nav>
+                        </div>
                     </div>
                     <div class="box">
                         <div class="m-tabct" style="display: block;">
@@ -171,19 +171,15 @@
             slideToClickedSlide: true,
             on: {
                 slideChangeTransitionStart: function () {
-                    if (this.activeIndex === 0) {
-                        // $('#show').show()        
+                    if (this.activeIndex === 0) {       
                         menuButton.classList.add('cross');
                         menuButton.removeEventListener('click', openMenu, true);
                     } else {
-                        // $('.menu').hide()
-                        // alert(this.activeIndex)
                         menuButton.classList.remove('cross');
                     }
                 },
                 slideChangeTransitionEnd: function () {
                     if (this.activeIndex === 1) {
-                        // $('.menu').show()
                         menuButton.addEventListener('click', openMenu, true);
                     }
                 },
